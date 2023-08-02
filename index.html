@@ -56,6 +56,24 @@
             border: 5px solid;
             border-color: lightblue;
         }
+        .textcontainer {
+            align-self: center;
+            max-width: 200px;
+            max-height: 200px;
+            border: 2px solid;
+        }
+        .container {
+            max-width: 400px; /* Set the maximum width of the container */
+            align-self: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Style the text area */
+        #messageBox {
+            width: 100%; /* Make the text area occupy the entire container width */
+        }
     </style>
 </head>
 <body>
@@ -81,7 +99,39 @@
     <h2 class="middleStart3">Your face when I say something stupid <br> Which is a bit too often...</h2>
     <img src="pics\Live 12.jpg" class="picture" width="200">
     <h2 class="middleStart5">Here are your favorite flowers 💗<br>[since you won't let me order any...]</h2>
-    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQKbs1lkJUP1SSwF2rv3_wUCLFT4rQuGYFTxwTf39CRrg7kbST4EgmWZQv20hrNYqHzMjIZGlSb09KbNVY" class="picture" width="200">
-    
+    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQKbs1lkJUP1SSwF2rv3_wUCLFT4rQuGYFTxwTf39CRrg7kbST4EgmWZQv20hrNYqHzMjIZGlSb09KbNVY" class="picture" width="200">'
+    <br>
+    <p class="container" id="pageIndicator"></p>
+    <div class="container">
+        <textarea id="messageBox" cols="40" rows="20"></textarea>
+    </div>
+    <button class="container" onclick="showNextMessage()">Next Page</button>
+
+    <script>
+        // Define your messages in JavaScript variables
+        const messages = [
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc",
+            "This is the second message.",
+            "This is the third message.",
+        ];
+
+        let currentIndex = 0;
+
+        function showNextMessage() {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.value = messages[currentIndex];
+            currentIndex = (currentIndex + 1) % messages.length;
+            updatePageIndicator();
+        }
+        function updatePageIndicator() {
+            const pageIndicator = document.getElementById('pageIndicator');
+            const currentPage = currentIndex + 1;
+            const totalPage = messages.length;
+            pageIndicator.textContent = `${currentPage}/${totalPage}`;
+        }
+
+        // Show the first message on page load
+        showNextMessage();
+    </script>
 </body>
 </html>
