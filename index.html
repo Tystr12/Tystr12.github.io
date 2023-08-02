@@ -103,7 +103,7 @@
     <br>
     <p class="container" id="pageIndicator"></p>
     <div class="container">
-        <textarea id="messageBox" cols="40" rows="20"></textarea>
+        <textarea id="messageBox" cols="40" rows="10" readonly></textarea>
     </div>
     <button class="container" onclick="showNextMessage()">Next Page</button>
 
@@ -125,9 +125,9 @@
         }
         function updatePageIndicator() {
             const pageIndicator = document.getElementById('pageIndicator');
-            const currentPage = currentIndex;
+            const currentPage = currentIndex+1;
             const totalPage = messages.length;
-            pageIndicator.textContent = `${currentPage}/${totalPage}`;
+            pageIndicator.textContent = `${currentIndex}/${totalPage}`;
         }
 
         // Show the first message on page load
